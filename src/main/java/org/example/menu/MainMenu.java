@@ -70,5 +70,6 @@ public class MainMenu {
 
             }
         } while (!done);
+        sc.close();
     }
 }

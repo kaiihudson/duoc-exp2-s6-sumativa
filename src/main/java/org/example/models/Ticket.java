@@ -31,4 +31,10 @@ public class Ticket {
     public void setColumn(Column column) {
         this.column = column;
     }
+
+    @Override
+    public String toString(){
+        return column.toString().replace("COLUMN_", "Columna ")+
+                " Asiento " + row + " Precio: $" + price;
+    }
 }

@@ -1,5 +1,6 @@
 package org.example.menu;
 
+import org.example.common.utils.Input;
 import org.example.models.Cart;
 import org.example.models.Column;
 import org.example.models.Theatre;
@@ -27,28 +28,14 @@ public class ReserveMenu {
                 done = true;
                 continue;
             }
-            if (rawCoordinate.length() > 3 || rawCoordinate.isEmpty()){
-                System.err.println("Coordenada no valida");
-                continue;
-            }
-            char rawColumn = rawCoordinate.charAt(0);
-            Column column = null;
-            int row = -1;
-            if (rawColumn >= 'a' && rawColumn <= 'n'){
-                column = TheatreService.parseColumn(rawColumn);
-                String rawRow = rawCoordinate.substring(1);
-                try {
-                    row = Integer.parseInt(rawRow);
-                } catch (NumberFormatException e){
-                    System.err.println("La fila "+ rawRow + " no es valida para la columna "+ rawColumn);
-                    continue;
-                }
-                if (row > 14 || row <= 0) {
-                    System.err.println("La fila " + row + " no es valida para la columna "+ rawColumn);
-                    continue;
-                }
+
+            // Validate Coordinate
+            int row;
+            Column column;
+            if(Input.validateCoordinate(rawCoordinate)){
+                column = TheatreService.parseColumn(rawCoordinate.charAt(0));
+                row = Integer.parseInt(rawCoordinate.substring(1));
             } else {
-                System.err.println("La columna "+ rawColumn + " no es valida.");
                 continue;
             }
             // check if seat is available
@@ -60,7 +47,6 @@ public class ReserveMenu {
                 TicketService.setPrice(row, ticket);
                 reserveTicket(theatre, cart, ticket);
                 done = true;
-                continue;
             } else {
                 System.err.println("Asiento no disponible");
             }
