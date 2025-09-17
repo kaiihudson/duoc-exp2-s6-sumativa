@@ -20,6 +20,7 @@ public class ModifyMenu {
             // ask for the ticket to modify
             System.out.println("Ingrese Boleto a modificar");
             System.out.println(cart);
+            System.out.println("Escriba 'SALIR' para salir");
             System.out.print("Asiento: ");
             String rawIndex = sc.nextLine().toLowerCase();
             if (rawIndex.equals("salir")){
@@ -38,7 +39,7 @@ public class ModifyMenu {
                 continue;
             }
             // save old ticket for later validation
-            oldTicket = cart.getTickets().get(index);
+            oldTicket = cart.getTickets().get(index-1);
             // ask for new ticket to replace
             boolean subQ = false;
             while (!subQ){

@@ -58,7 +58,9 @@ public class MainMenu {
                     break;
                 // Buy Tickets
                 case 3:
-                    PurchaseService.purchaseTickets(cart.getTickets(), purchase);
+                    PurchaseService.purchaseTickets(cart, purchase);
+                    // reset cart for new purchase
+                    cart = new Cart();
                     break;
                 // Show Receipt
                 case 4:
