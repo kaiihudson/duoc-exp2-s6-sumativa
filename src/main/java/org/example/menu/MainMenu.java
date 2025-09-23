@@ -61,6 +61,7 @@ public class MainMenu {
                     PurchaseService.purchaseTickets(cart, purchase);
                     // reset cart for new purchase
                     cart = new Cart();
+                    System.out.println("Boletos COMPRADOS con éxito");
                     break;
                 // Show Receipt
                 case 4:
